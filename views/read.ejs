@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Server Side Rendering</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="/stylesheets/style.css">
+</head>
+
+<body class="bg-zinc-900">
+    <div class="w-full h-full bg-zinc-900 text-white m-10">
+        <span class="backtoread  text-blue-400">
+            <a  href="/"><--create new User</a>
+        </span>
+
+        <h1 class="message text-3xl mt-5 mb-5">All Users</h1>
+
+        <% if(users.length==0){%>
+            <p class="text-red-400 text-xl">No users found.</p>
+            <%}else{%>
+                <div class="users flex gap-3 flex-wrap">
+                    <% users.forEach((user)=> { %>
+                        <div class="user w-72 p-4  bg-zinc-700 rounded-lg">
+                            <div class="image w-full h-60 bg-blue-300 rounded-lg">
+                                <img src="<%= user.image %>" alt="User Image"
+                                    class="w-full h-full object-cover rounded-lg">
+                            </div>
+                            <h2 class="text-3xl">
+                                <%= user.name %>
+                            </h2>
+                            <h2 class="text-zinc-400">
+                                <%=user.password%>
+                            </h2>
+                            <div class="edit flex gap-3 mt-10 justify-evenly">
+                                <a class="text-green-400" href="/edit/<%=user.email%>">Edit User</a>
+                                <a class="text-red-500" href="/delete/<%=user.email %>">Delete User</a>
+                            </div>
+                        </div>
+                        <% }) %>
+                </div>
+                <%}%>
+
+
+    </div>
+    <script src="/javascripts/script.js"></script>
+
+</body>
+
+</html>
